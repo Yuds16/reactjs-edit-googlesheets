@@ -1,0 +1,56 @@
+{
+  "name": "solas-simposium",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://yuds16.github.io/solas-simposium",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "bootstrap": "^4.5.2",
+    "framer": "^1.2.5",
+    "google-spreadsheet": "^2.0.6",
+    "googleapis": "^59.0.0",
+    "http2": "^3.3.7",
+    "material-table": "^1.68.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dom": "^16.13.1",
+    "react-google-login": "^5.1.21",
+    "react-native-google-sign-in": "^1.0.16",
+    "react-scripts": "3.4.3",
+    "spdy-transport": "^3.0.0",
+    "tabletop": "^1.6.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
