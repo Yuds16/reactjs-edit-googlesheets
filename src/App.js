@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import Tabletop from 'tabletop';
+// import {GoogleSpreadsheet} from 'google-spreadsheet';
 
 const SHEET_ID = '1CvuBgaAY0DtayM3yy9WAH5MU-dUwyTkx_iHN1ZDZP-8';
 
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { promisify } = require('util');
 
-const creds = require('./config/service_account_sheets.json');
+const creds = require('./config/service_account_sheets_v2.json');
 
 async function agree(row) {
   alert("Checkpoint 1");
@@ -15,7 +14,7 @@ async function agree(row) {
     alert("Checkpoint 2");
     const doc = new GoogleSpreadsheet(SHEET_ID);
     alert("Checkpoint 2.1");
-    await promisify(doc.useServiceAccountAuth)(creds);
+    await promisify(doc.useServiceAccountAuth)(creds); // error is here
     alert("Checkpoint 2.2");
     await doc.loadInfo();
     alert("Checkpoint 2.3");
@@ -40,20 +39,18 @@ async function agree(row) {
 async function disagree(row) {
   try {
     const doc = new GoogleSpreadsheet(SHEET_ID);
-    // await promisify(doc.useServiceAccountAuth)(creds);
-    // const info = await promisify(doc.getInfo)();
-    // const sheet = info.worksheets[0];
+    await promisify(doc.useServiceAccountAuth)(creds); // error is here
+    await doc.loadInfo();
+    const sheet = doc.sheetsByIndex[0];
+  
+    console.log(sheet.title);
+    
+    await sheet.loadCells();
+    const target = sheet.getCell(row, 3);
+    console.log(target.value);
 
-    // const cell = await promisify(sheet.getCells)({
-    //   'min-row': row,
-    //   'max-row': row,
-    //   'min-col': 4,
-    //   'max-col': 4,
-    // });
-
-    // cell[0].value = 'Disagree';
-    // cell[0].save();
-    // return;
+    target.value = "Disagree";
+    await sheet.saveUpdatedCells();
   } catch (err) {
     console.log(err);
     alert("Failed to complete action, please contact maintainance.");
@@ -81,15 +78,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Tabletop.init({
-      key: SHEET_ID,
-      callback: googleData => {
-        this.setState({
-          data: googleData
-        })
-      },
-      simpleSheet: true
-    })
+
   }
 
   updateAgree = () => {
