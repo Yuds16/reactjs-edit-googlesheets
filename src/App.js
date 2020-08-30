@@ -9,24 +9,14 @@ const { promisify } = require('util');
 const creds = require('./config/service_account_sheets_v2.json');
 
 async function agree(row) {
-  alert("Checkpoint 1");
   try {
-    alert("Checkpoint 2");
     const doc = new GoogleSpreadsheet(SHEET_ID);
-    alert("Checkpoint 2.1");
-    await promisify(doc.useServiceAccountAuth)(creds); // error is here
-    alert("Checkpoint 2.2");
+    await doc.useServiceAccountAuth(creds);
     await doc.loadInfo();
-    alert("Checkpoint 2.3");
     const sheet = doc.sheetsByIndex[0];
-    
-    alert("Checkpoint 3");
-  
-    console.log(sheet.title);
     
     await sheet.loadCells();
     const target = sheet.getCell(row, 3);
-    console.log(target.value);
 
     target.value = "Agree";
     await sheet.saveUpdatedCells();
@@ -39,15 +29,12 @@ async function agree(row) {
 async function disagree(row) {
   try {
     const doc = new GoogleSpreadsheet(SHEET_ID);
-    await promisify(doc.useServiceAccountAuth)(creds); // error is here
+    await promisify(doc.useServiceAccountAuth)(creds);
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
-  
-    console.log(sheet.title);
     
     await sheet.loadCells();
     const target = sheet.getCell(row, 3);
-    console.log(target.value);
 
     target.value = "Disagree";
     await sheet.saveUpdatedCells();
@@ -81,7 +68,8 @@ class App extends Component {
 
   }
 
-  updateAgree = () => {
+  updateAgree = (e) => {
+    e.preventDefault(true);
     agree(parseInt(this.state.value, 10) + 1);
   }
 
