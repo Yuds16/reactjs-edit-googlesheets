@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 const SHEET_ID = '1CvuBgaAY0DtayM3yy9WAH5MU-dUwyTkx_iHN1ZDZP-8';
 
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { promisify } = require('util');
 
 const creds = require('./config/service_account_sheets_v2.json');
 
@@ -20,6 +19,8 @@ async function agree(row) {
 
     target.value = "Agree";
     await sheet.saveUpdatedCells();
+
+    window.location.reload();
   } catch (err) {
     console.log(err);
     alert("Failed to complete action, please contact maintainance.");
@@ -29,7 +30,7 @@ async function agree(row) {
 async function disagree(row) {
   try {
     const doc = new GoogleSpreadsheet(SHEET_ID);
-    await promisify(doc.useServiceAccountAuth)(creds);
+    await doc.useServiceAccountAuth(creds);
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
     
@@ -38,6 +39,8 @@ async function disagree(row) {
 
     target.value = "Disagree";
     await sheet.saveUpdatedCells();
+
+    window.location.reload();
   } catch (err) {
     console.log(err);
     alert("Failed to complete action, please contact maintainance.");
@@ -68,12 +71,14 @@ class App extends Component {
 
   }
 
-  updateAgree = () => {
-    agree(parseInt(this.state.value, 10) + 1);
+  updateAgree = (e) => {
+    agree(parseInt(this.state.value, 10));
+    e.preventDefault(true);
   }
 
-  updateDisagree = () => {
-    disagree(parseInt(this.state.value, 10) + 1);
+  updateDisagree = (e) => {
+    disagree(parseInt(this.state.value, 10));
+    e.preventDefault(true);
   }
 
   render() {
