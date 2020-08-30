@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/reactjs-edit-googlesheets/static/css/main.69eda509.chunk.css",
+    "main.js": "/reactjs-edit-googlesheets/static/js/main.ef52e550.chunk.js",
+    "main.js.map": "/reactjs-edit-googlesheets/static/js/main.ef52e550.chunk.js.map",
+    "runtime-main.js": "/reactjs-edit-googlesheets/static/js/runtime-main.426d963a.js",
+    "runtime-main.js.map": "/reactjs-edit-googlesheets/static/js/runtime-main.426d963a.js.map",
+    "static/js/2.4354ce25.chunk.js": "/reactjs-edit-googlesheets/static/js/2.4354ce25.chunk.js",
+    "static/js/2.4354ce25.chunk.js.map": "/reactjs-edit-googlesheets/static/js/2.4354ce25.chunk.js.map",
+    "index.html": "/reactjs-edit-googlesheets/index.html",
+    "precache-manifest.c4a8d6d03b64c0ee49c02b11d1cded17.js": "/reactjs-edit-googlesheets/precache-manifest.c4a8d6d03b64c0ee49c02b11d1cded17.js",
+    "service-worker.js": "/reactjs-edit-googlesheets/service-worker.js",
+    "static/css/main.69eda509.chunk.css.map": "/reactjs-edit-googlesheets/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.4354ce25.chunk.js.LICENSE.txt": "/reactjs-edit-googlesheets/static/js/2.4354ce25.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.426d963a.js",
+    "static/js/2.4354ce25.chunk.js",
+    "static/css/main.69eda509.chunk.css",
+    "static/js/main.ef52e550.chunk.js"
+  ]
+}
