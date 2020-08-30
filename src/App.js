@@ -68,13 +68,12 @@ class App extends Component {
 
   }
 
-  updateAgree = (e) => {
-    e.preventDefault(true);
+  updateAgree = () => {
     agree(parseInt(this.state.value, 10) + 1);
   }
 
-  updateDisagree = async () => {
-    await disagree(parseInt(this.state.value, 10) + 1);
+  updateDisagree = () => {
+    disagree(parseInt(this.state.value, 10) + 1);
   }
 
   render() {
